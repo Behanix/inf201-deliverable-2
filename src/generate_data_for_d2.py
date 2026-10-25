@@ -8,7 +8,9 @@ import random
 from datetime import datetime, timedelta
 from pathlib import Path
 
-BASE_DIR = Path(".", "data")  # Path("data")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = PROJECT_ROOT / "data"  # Path("data")
+
 STORES = ["library_cafe", "science_building", "student_union"]
 REGISTERS = ["POS_01", "POS_02", "POS_03"]
 CURRENCIES = ["EUR", "NOK", "USD"]
@@ -46,7 +48,7 @@ def create_dataset():
 
     for store in STORES:
         for reg in REGISTERS:
-            folder = BASE_DIR / "2026" / store / reg
+            folder = DATA_DIR / "2026" / store / reg
             folder.mkdir(parents=True, exist_ok=True)
 
             log_file = folder / "register_sales.log"
@@ -93,7 +95,7 @@ def create_dataset():
         ],
     }
 
-    with open(BASE_DIR / "store_config.json", "w", encoding="utf-8") as f:
+    with open(DATA_DIR / "store_config.json", "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
 
     print("\nDataset generation complete!")
