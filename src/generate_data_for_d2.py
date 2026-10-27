@@ -53,7 +53,7 @@ def create_dataset():
 
             log_file = folder / "register_sales.log"
             encoding = "utf-8" if file_idx % 2 == 0 else "iso-8859-1"
-            
+
             lines = []
             current_time = start_time
 
